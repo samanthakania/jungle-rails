@@ -1,20 +1,24 @@
 class Admin::CategoriesController < ApplicationController
   def index
-      @categories = Categories.order(id: :desc).all
-    end
+    @categories = Category.order(id: :desc).all
+  end
 
-    def new
-      @product = Categories.new
-    end
+  def new
+    @category = Category.new
+  end
 
-    def create
-      @product = Categories.new(product_params)
+  def create
+    @category = Category.new(category_params)
 
-      if @product.save
-        redirect_to [:admin, :products], notice: 'Category created!'
-      else
-        render :new
-      end
+    if @category.save
+      redirect_to [:admin, :categories], notice: 'Category created!'
+    else
+      render :new
     end
+  end
+
+  def category_params
+    params.require(:category).permit(:name)
+  end
 
 end
