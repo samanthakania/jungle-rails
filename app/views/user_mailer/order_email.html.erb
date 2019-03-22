@@ -4,7 +4,16 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>Order#: <%= @order.id %></p>
-
+    <h1>Thank you for your Order. Order #: <%= @order.id %></h1>
+    <h2>Total: <%= humanized_money_with_symbol @order.total %> </h2>
+  <div class="panel panel-default">
+    <table class="table table-bordered">
+      <tbody>
+        <% @order.line_items.each do |line_item| %>
+          <%= render 'item', line_item: line_item %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
   </body>
 </html>
