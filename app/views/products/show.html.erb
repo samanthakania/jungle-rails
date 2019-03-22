@@ -5,7 +5,7 @@
   </header>
 
   <article class="product-detail">
-
+ <h1> <%=flash[:notice]%> </h1>
     <div class="row">
 
       <div class="col-sm-4">
@@ -21,11 +21,21 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd><%= humanized_money_with_symbol @product.price %></dd>
         </dl>
       </div>
     </div>
 
   </article>
-
+ <div class="row">
+      <div class="col-sm-8">
+        <dl class="dl-vertical">
+          <br/><dt>Review</dt><br/>
+          <% @product.reviews.each do |review| %>
+            <p>Description: <%= review.description %></p>
+            <p>Rating: <%= review.rating %></p>
+          <% end %>
+        </dl>
+      </div>
+    </div>
 </section>
