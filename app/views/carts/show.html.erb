@@ -4,6 +4,15 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if !enhanced_cart.any? %>
+   <div class="alert alert-danger" role="alert">
+      <h3>There is nothing in your cart</h3>
+      <div>
+    <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
